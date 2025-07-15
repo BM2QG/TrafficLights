@@ -1,0 +1,79 @@
+// Traffic Light Arduino Project: Used LEDs to simulate two-way traffic light using Arduino to send voltage to correct LED at the right time.
+// Arudino IDE
+// By William Quinterogomez
+
+//Arduino Street light Code
+// Traffic Light Arduino Sequence Project
+
+//Street Light two on the right side, Street Light one on the left
+int led13 = 13; // Street Light 2 Green light
+int led12 = 12; // Street light 2 Yellow Light
+int led08 = 8;  // Street Light 2 Red light
+
+
+int led10 = 10; // Street Light 1 Green light
+int led09 = 9;  //Street Light 1 Yellow light
+int led11 = 11; // Street Light 1 Red light
+
+
+
+
+
+void setup() {
+  
+  Serial.begin(9600);
+  // Declaring pins as OUTPUT, so the Arduino sends a LOW or HIGH output.
+  pinMode(led13, OUTPUT);
+  pinMode(led12, OUTPUT);
+  pinMode(led08, OUTPUT);
+
+  pinMode(led10, OUTPUT);
+  pinMode(led09, OUTPUT);
+  pinMode(led11, OUTPUT);
+
+
+}
+
+void loop() {
+  // Code loops the traffic light configuration sequence
+
+  delay(500); // Delay .5 second before starting traffic light sequence.
+
+
+  // SL 1 red turns on and SL 2 green turns on.
+  digitalWrite(led13, HIGH);
+  digitalWrite(led11, HIGH);
+  //Stays in this configuration for 10 seconds.
+  delay(10000);
+
+
+  //SL 2 turns green to yellow.
+  digitalWrite(led13, LOW);
+  digitalWrite(led12, HIGH);
+  delay(2000); // Stays for 2 seconds
+
+  // SL 2 yellow light turns off. SL 1 red light turns off.
+  digitalWrite(led12, LOW);
+  digitalWrite(led11, LOW);
+
+  delay(500); // .5 second delay
+
+
+  // SL 1 green light turns on and SL 2 red light turns on.
+  digitalWrite(led10, HIGH);
+  digitalWrite(led08, HIGH);
+  delay(10000); // 10 second delay
+
+  // SL 1 green light turns to yellow.
+  digitalWrite(led10, LOW);
+  digitalWrite(led09, HIGH);
+  delay(2000); // 2 second delay
+
+  // SL 1 yellow light turns off and SL 2 red light turns off.
+  digitalWrite(led09, LOW);
+  digitalWrite(led08, LOW);
+
+
+  // Configuration sequence repeats again.
+
+}
